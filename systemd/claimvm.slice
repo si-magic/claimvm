@@ -1,0 +1,6 @@
+[Unit]
+Description=ClaimVM load slice
+
+[Slice]
+CPUWeight=idle
+Nice=19

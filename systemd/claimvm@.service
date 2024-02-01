@@ -1,0 +1,15 @@
+[Unit]
+Description=ClaimVM look busy to hypervisor
+Documentation=https://github.com/si-magic/claimvm
+Requires=claimvm.slice
+
+[Service]
+Type=idle
+Slice=claimvm.slice
+Nice=19
+ExecSearchPath=/usr/libexec/claimvm:/usr/local/libexec/claimvm:/usr/bin:/bin
+ExecStart=claimvm exec %i
+ExecStop=systemctl kill claimvm.slice
+
+[Install]
+WantedBy=basic.target

@@ -1,0 +1,25 @@
+#!/bin/sh
+do_bogo () {
+	while true
+	do
+		:
+	done
+}
+
+do_exec () {
+	cnt=$(nproc)
+	for (( i = 0; i < cnt; i += 1 ))
+	do
+		systemd-run \
+			--slice-inherit \
+			-Gq \
+			-p CPUQuota=$1% \
+			$0 bogo
+	done
+
+	sleep infinity
+}
+
+cmd=$1
+shift
+do_$cmd $@
