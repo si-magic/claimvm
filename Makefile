@@ -4,7 +4,7 @@ SYSTEMD_UNITS ?= claimvm@.service claimvm.slice
 install:
 	install -d $(PREFIX)/libexec/claimvm $(PREFIX)/lib/systemd/system
 	install -t $(PREFIX)/libexec/claimvm src/claimvm
-	cd systemd && install -t $(PREFIX)/lib/systemd/system $(SYSTEMD_UNITS)
+	cd systemd && install -m 644 -t $(PREFIX)/lib/systemd/system $(SYSTEMD_UNITS)
 	systemctl daemon-reload
 
 uninstall:
